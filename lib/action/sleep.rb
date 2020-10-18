@@ -6,7 +6,7 @@ class Sleep
   end
 
   def stats!
-    @stats = @base_object.stats!.clone
+    @stats = @base_object.stats.clone
 
     @stats['health'] += @stats['mana'] < 30 ? 90 : 0
     @stats['fun'] -= @stats['mana'] > 70 ? 3 : 0

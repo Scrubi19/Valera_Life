@@ -10,8 +10,4 @@ class Valera
       'money' => money
     }
   end
-
-  def stats!
-    @stats
-  end
 end

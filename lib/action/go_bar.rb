@@ -6,7 +6,7 @@ class GoBar
   end
 
   def stats!
-    @stats = @base_object.stats!.clone
+    @stats = @base_object.stats.clone
 
     @stats['fun'] += 1
     @stats['mana'] += 60
