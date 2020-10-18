@@ -10,7 +10,7 @@ RSpec.describe WineSerial do
 
     let(:wine_reset_expect) { { 'fatigue' => 40, 'fun' => 1, 'health' => 90, 'mana' => 60, 'money' => -100 } }
 
-    context 'Decorator wine_serial reset' do
+    context 'Decorator wine serial reset' do
       it {
         bar_wine_valera.base_object = Valera.new
         expect(bar_wine_valera.stats!).to eq wine_reset_expect
