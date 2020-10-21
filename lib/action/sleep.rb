@@ -10,8 +10,8 @@ class Sleep
 
     @stats['health'] += @stats['mana'] < 30 ? 90 : 0
     @stats['fun'] -= @stats['mana'] > 70 ? 3 : 0
-    @stats['mana'] -= 50
-    @stats['fatigue'] -= 70
+    @stats['mana'] -= @stats['mana'] <= 0 ? 0 : 50
+    @stats['fatigue'] -= @stats['fatigue'] <= 0 ? 0 : 70
 
     @stats
   end

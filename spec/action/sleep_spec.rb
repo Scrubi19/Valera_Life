@@ -8,7 +8,7 @@ RSpec.describe Sleep do
       Sleep.new Valera.new
     end
 
-    let(:sleep_reset_expect) { { 'health' => 190, 'mana' => -50, 'fun' => 0, 'fatigue' => -70, 'money' => 0 } }
+    let(:sleep_reset_expect) { { 'health' => 190, 'mana' => 0, 'fun' => 0, 'fatigue' => 0, 'money' => 0 } }
 
     context 'Decorator sleep reset' do
       it {

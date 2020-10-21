@@ -9,7 +9,7 @@ class Chill
     @stats = @base_object.stats!.clone
 
     @stats['fun'] -= 5
-    @stats['mana'] -= 10
+    @stats['mana'] -= @stats['mana'] <= 0 ? 0 : 10
     @stats['fatigue'] += 10
 
     @stats

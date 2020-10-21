@@ -8,7 +8,7 @@ RSpec.describe Chill do
       Work.new Chill.new Valera.new
     end
 
-    let(:chill_reset_expect) { { 'health' => 100, 'mana' => -30, 'fun' => -5, 'fatigue' => 70, 'money' => 100 } }
+    let(:chill_reset_expect) { { 'health' => 100, 'mana' => 0, 'fun' => -5, 'fatigue' => 70, 'money' => 100 } }
 
     context 'Decorator chill reset' do
       it {

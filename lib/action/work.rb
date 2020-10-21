@@ -9,7 +9,7 @@ class Work
     @stats = @base_object.stats!.clone
 
     @stats['fun'] -= 5
-    @stats['mana'] -= 30
+    @stats['mana'] -= @stats['mana'] <= 0 ? 0 : 30
     @stats['money'] += 100
     @stats['fatigue'] += 70
 
@@ -18,5 +18,13 @@ class Work
 
   def dead?
     @base_object.dead?
+  end
+
+  def drunk?
+    @stats['mana'] < 50 && @stats['fatigue'] < 10
+  end
+
+  def might?
+    dead? && drunk?
   end
 end
