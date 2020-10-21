@@ -6,7 +6,7 @@ class SingingSubway
   end
 
   def stats!
-    @stats = @base_object.stats.clone
+    @stats = @base_object.stats!.clone
 
     @stats['fun'] += 1
     @stats['money'] += (@stats['mana'] > 40) && (@stats['mana'] < 70) ? 60 : 10

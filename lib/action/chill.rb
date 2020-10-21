@@ -6,7 +6,7 @@ class Chill
   end
 
   def stats!
-    @stats = @base_object.stats.clone
+    @stats = @base_object.stats!.clone
 
     @stats['fun'] -= 5
     @stats['mana'] -= 10

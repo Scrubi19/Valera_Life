@@ -19,6 +19,8 @@ class Game
     FromJSON.new('save.json').load_file.init_stats(@valera)
 
     valera = Sleep.new(Chill.new(Valera.new))
+    valera_test = Chill.new Chill.new Valera.new
+    p valera_test.stats!
     p "Valera dead ? #{valera.dead?}"
   end
 
