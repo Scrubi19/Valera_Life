@@ -10,4 +10,8 @@ class Valera
       'money' => money
     }
   end
+
+  def dead?
+    @stats['fun'] <= -10 and (@stats['health']).negative?
+  end
 end

@@ -15,4 +15,8 @@ class Work
 
     @stats
   end
+
+  def dead?
+    @base_object.dead?
+  end
 end

@@ -15,4 +15,8 @@ class SingingSubway
 
     @stats
   end
+
+  def dead?
+    @base_object.dead?
+  end
 end

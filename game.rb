@@ -1,5 +1,12 @@
 require_relative 'lib/saves_system/to_json'
 require_relative 'lib/valera'
+require_relative 'lib/action/sleep'
+require_relative 'lib/action/chill'
+require_relative 'lib/action/wine_serial'
+require_relative 'lib/action/work'
+require_relative 'lib/action/singing_subway'
+require_relative 'lib/action/go_bar'
+require_relative 'lib/action/marginal_drink'
 require_relative 'lib/saves_system/from_json'
 
 class Game
@@ -10,6 +17,9 @@ class Game
   def start
     ToJSON.new(@valera).init_stats.create_save
     FromJSON.new('save.json').load_file.init_stats(@valera)
+
+    valera = Sleep.new(Chill.new(Valera.new))
+    p "Valera dead ? #{valera.dead?}"
   end
 
   def stop
