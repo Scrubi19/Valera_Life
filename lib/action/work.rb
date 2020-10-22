@@ -17,7 +17,7 @@ class Work
   end
 
   def dead?
-    @base_object.dead?
+    (@stats['fun'] <= -10) || (@stats['health']).negative?
   end
 
   def drunk?
