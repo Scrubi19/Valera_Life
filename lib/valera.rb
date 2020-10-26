@@ -1,14 +1,10 @@
+require 'yaml'
+
 class Valera
   attr_accessor :stats
 
-  def initialize(health = 100, mana = 0, fun = 0, money = 0, fatigue = 0)
-    @stats = {
-      'health' => health,
-      'mana' => mana,
-      'fun' => fun,
-      'fatigue' => fatigue,
-      'money' => money
-    }
+  def initialize(level = 'easy', path_to_config = 'lib/start_config.yml')
+    @stats = YAML.safe_load(File.read(path_to_config))[level]
   end
 
   def dead?

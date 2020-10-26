@@ -1,0 +1,20 @@
+easy:
+  health: 100
+  mana: 0
+  fun: 0
+  money: 0
+  fatigue: 0
+
+middle:
+  health: 75
+  mana: 0
+  fun: 0
+  money: 0
+  fatigue: 0
+
+hard:
+  health: 50
+  mana: 0
+  fun: 0
+  money: 0
+  fatigue: 0
