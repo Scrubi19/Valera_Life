@@ -18,4 +18,17 @@ class Chill
   def dead?
     (@stats['fun'] <= -10) || (@stats['health']).negative?
   end
+
+  def self.there_is_possibility?(current_stats)
+    current_stats['money'] >= 20
+  end
+
+  def self.print_info(numb, stats)
+    print "#{numb}: Contemplate nature"
+    if there_is_possibility?(stats)
+      puts ' (Can) '
+    else
+      puts ' (No possibility) '
+    end
+  end
 end

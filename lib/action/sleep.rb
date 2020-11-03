@@ -19,4 +19,17 @@ class Sleep
   def dead?
     (@stats['fun'] <= -10) || (@stats['health']).negative?
   end
+
+  def self.there_is_possibility?(_current_stats)
+    true
+  end
+
+  def self.print_info(numb, stats)
+    print "#{numb}: Sleep"
+    if there_is_possibility?(stats)
+      puts ' (Can) '
+    else
+      puts ' (No possibility) '
+    end
+  end
 end

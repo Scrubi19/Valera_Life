@@ -20,11 +20,20 @@ class Work
     (@stats['fun'] <= -10) || (@stats['health']).negative?
   end
 
-  def drunk?
-    @stats['mana'] < 50 && @stats['fatigue'] < 10
+  def self.there_is_possibility?(current_stats)
+    current_stats['mana'] < 50 && current_stats['fatigue'] < 10
   end
 
-  def might?
-    dead? && drunk?
+  # def might?
+  #   dead? && drunk?
+  # end
+
+  def self.print_info(numb, stats)
+    print "#{numb}: Go to work"
+    if there_is_possibility?(stats)
+      puts ' (Can) '
+    else
+      puts ' (No possibility) '
+    end
   end
 end
