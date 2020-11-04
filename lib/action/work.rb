@@ -21,7 +21,8 @@ class Work
   end
 
   def self.there_is_possibility?(current_stats)
-    current_stats['mana'] < 50 && current_stats['fatigue'] < 10
+    current_stats['state?']['1'] =
+      current_stats['mana'] < 50 && current_stats['fatigue'] < 10
   end
 
   # def might?

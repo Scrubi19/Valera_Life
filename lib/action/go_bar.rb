@@ -22,7 +22,7 @@ class GoBar
   end
 
   def self.there_is_possibility?(current_stats)
-    current_stats['money'] >= 100
+    current_stats['state?']['4'] = current_stats['money'] >= 100
   end
 
   def self.print_info(numb, stats)

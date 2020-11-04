@@ -22,7 +22,7 @@ class MarginalDrink
   end
 
   def self.there_is_possibility?(current_stats)
-    current_stats['money'] >= 150
+    current_stats['state?']['6'] = current_stats['money'] >= 150
   end
 
   def self.print_info(numb, stats)

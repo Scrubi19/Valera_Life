@@ -20,8 +20,8 @@ class SingingSubway
     (@stats['fun'] <= -10) || (@stats['health']).negative?
   end
 
-  def self.there_is_possibility?(_current_stats)
-    true
+  def self.there_is_possibility?(current_stats)
+    current_stats['state?']['5'] = true
   end
 
   def self.print_info(numb, stats)

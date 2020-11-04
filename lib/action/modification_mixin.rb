@@ -13,17 +13,31 @@ module ModificationMixin
   attr_accessor :act
 
   @act = {
-    '1' => ->(valera) { Work.new(valera) },
-    '2' => ->(valera) { Chill.new(valera) },
-    '3' => ->(valera) { WineSerial.new(valera) },
-    '4' => ->(valera) { GoBar.new(valera) },
-    '5' => ->(valera) { SingingSubway.new(valera) },
-    '6' => ->(valera) { MarginalDrink.new(valera) },
-    '7' => ->(valera) { Sleep.new(valera) }
+    '1' => lambda { |valera, choice|
+      valera.stats!['state?'][choice] ? Work.new(valera) : valera
+    },
+    '2' => lambda { |valera, choice|
+      valera.stats!['state?'][choice] ? Chill.new(valera) : valera
+    },
+    '3' => lambda { |valera, choice|
+      valera.stats!['state?'][choice] ? WineSerial.new(valera) : valera
+    },
+    '4' => lambda { |valera, choice|
+      valera.stats!['state?'][choice] ? GoBar.new(valera) : valera
+    },
+    '5' => lambda { |valera, choice|
+      valera.stats!['state?'][choice] ? SingingSubway.new(valera) : valera
+    },
+    '6' => lambda { |valera, choice|
+      valera.stats!['state?'][choice] ? MarginalDrink.new(valera) : valera
+    },
+    '7' => lambda { |valera, choice|
+      valera.stats!['state?'][choice] ? Sleep.new(valera) : valera
+    }
   }
 
   def next_iteration(valera, choice)
-    ModificationMixin.act[choice].call(valera)
+    ModificationMixin.act[choice].call(valera, choice)
   end
 
   class << self

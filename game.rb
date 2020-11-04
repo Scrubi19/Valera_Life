@@ -11,7 +11,7 @@ class Game
   end
 
   def game
-    system('reset') # Работает только через терминал
+    system('reset') # wor with terminal only
     Menu.print_stats(@valera.stats!)
 
     until @valera.dead?

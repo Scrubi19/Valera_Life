@@ -20,7 +20,7 @@ class Chill
   end
 
   def self.there_is_possibility?(current_stats)
-    current_stats['money'] >= 20
+    current_stats['state?']['2'] = current_stats['money'] >= 20
   end
 
   def self.print_info(numb, stats)
