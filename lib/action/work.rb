@@ -1,4 +1,7 @@
+require_relative 'action_mixins/change_stats_mixin'
+
 class Work
+  include ChangeStatsMixin
   attr_accessor :base_object
 
   def initialize(base_object)
@@ -8,17 +11,17 @@ class Work
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['fun'] -= 5
-    @stats['mana'] -= @stats['mana'] <= 0 ? 0 : 30
-    @stats['money'] += 100
-    @stats['fatigue'] += 70
+    @stats['fun'] = take_op 'fun', '-', 5
+    @stats['mana'] = take_op 'mana', '-', 30
+    @stats['money'] = take_op 'money', '+', 100
+    @stats['fatigue'] = take_op 'fatigue', '+', 70
 
     @stats
   end
 
-  def dead?
-    (@stats['fun'] <= -10) || (@stats['health']).negative?
-  end
+  # def dead?
+  #   (@stats['fun'] <= -10) || (@stats['health']).negative?
+  # end
 
   def self.there_is_possibility?(current_stats)
     current_stats['state?']['1'] =

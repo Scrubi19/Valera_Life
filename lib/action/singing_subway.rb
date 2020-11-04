@@ -1,4 +1,7 @@
+require_relative 'action_mixins/change_stats_mixin'
+
 class SingingSubway
+  include ChangeStatsMixin
   attr_accessor :base_object
 
   def initialize(base_object)
@@ -8,17 +11,17 @@ class SingingSubway
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['fun'] += 1
-    @stats['money'] += (@stats['mana'] > 40) && (@stats['mana'] < 70) ? 60 : 10
-    @stats['mana'] += 10
-    @stats['fatigue'] += 20
+    @stats['fun'] = take_op 'fun', '+', 1
+    @stats['money'] = take_op 'money', '+', 10
+    @stats['mana'] = take_op 'mana', '+', 10
+    @stats['fatigue'] = take_op 'fatigue', '+', 20
 
     @stats
   end
 
-  def dead?
-    (@stats['fun'] <= -10) || (@stats['health']).negative?
-  end
+  # def dead?
+  #   (@stats['fun'] <= -10) || (@stats['health']).negative?
+  # end
 
   def self.there_is_possibility?(current_stats)
     current_stats['state?']['5'] = true

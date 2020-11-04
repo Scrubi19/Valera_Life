@@ -8,18 +8,18 @@ class MarginalDrink
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['fun'] += 5
-    @stats['health'] -= 80
-    @stats['mana'] += 90
-    @stats['fatigue'] += 80
-    @stats['money'] -= 150
+    @stats['fun'] = take_op 'fun', '+', 5
+    @stats['health'] = take_op 'health', '-', 80
+    @stats['mana'] = take_op 'mana', '+', 90
+    @stats['fatigue'] = take_op 'fatigue', '+', 80
+    @stats['money'] = take_op 'money', '-', 150
 
     @stats
   end
 
-  def dead?
-    (@stats['fun'] <= -10) || (@stats['health']).negative?
-  end
+  # def dead?
+  #   (@stats['fun'] <= -10) || (@stats['health']).negative?
+  # end
 
   def self.there_is_possibility?(current_stats)
     current_stats['state?']['6'] = current_stats['money'] >= 150

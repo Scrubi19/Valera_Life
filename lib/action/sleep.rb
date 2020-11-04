@@ -1,4 +1,7 @@
+require_relative 'action_mixins/change_stats_mixin'
+
 class Sleep
+  include ChangeStatsMixin
   attr_accessor :base_object
 
   def initialize(base_object)
@@ -8,17 +11,17 @@ class Sleep
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['health'] += @stats['mana'] < 30 ? 90 : 0
-    @stats['fun'] -= @stats['mana'] > 70 ? 3 : 0
-    @stats['mana'] -= @stats['mana'] <= 0 ? 0 : 50
-    @stats['fatigue'] -= @stats['fatigue'] <= 0 ? 0 : 70
+    @stats['health'] = take_op 'health', '+', 90
+    @stats['fun'] = take_op 'fun', '-', 3
+    @stats['mana'] = take_op 'mana', '-', 50
+    @stats['fatigue'] = take_op 'fatigue', '-', 70
 
     @stats
   end
 
-  def dead?
-    (@stats['fun'] <= -10) || (@stats['health']).negative?
-  end
+  # def dead?
+  #   (@stats['fun'] <= -10) || (@stats['health']).negative?
+  # end
 
   def self.there_is_possibility?(current_stats)
     current_stats['state?']['7'] = true

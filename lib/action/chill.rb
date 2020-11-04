@@ -1,4 +1,7 @@
+require_relative 'action_mixins/change_stats_mixin'
+
 class Chill
+  include ChangeStatsMixin
   attr_accessor :base_object
 
   def initialize(base_object)
@@ -8,16 +11,16 @@ class Chill
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['fun'] -= 5
-    @stats['mana'] -= @stats['mana'] <= 0 ? 0 : 10
-    @stats['fatigue'] += 10
+    @stats['fun'] = take_op 'fun', '+', 1
+    @stats['mana'] = take_op 'mana', '-', 10
+    @stats['fatigue'] = take_op 'fatigue', '+', 10
 
     @stats
   end
 
-  def dead?
-    (@stats['fun'] <= -10) || (@stats['health']).negative?
-  end
+  # def dead?
+  #   (@stats['fun'] <= -10) || (@stats['health']).negative?
+  # end
 
   def self.there_is_possibility?(current_stats)
     current_stats['state?']['2'] = current_stats['money'] >= 20

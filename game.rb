@@ -14,7 +14,7 @@ class Game
     system('reset') # wor with terminal only
     Menu.print_stats(@valera.stats!)
 
-    until @valera.dead?
+    until @valera.stats!['state?']['dead']
       Menu.print_menu(@valera.stats!)
 
       choice = Menu.input_choice

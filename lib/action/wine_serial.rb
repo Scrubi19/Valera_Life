@@ -8,18 +8,18 @@ class WineSerial
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['fun'] -= 1
-    @stats['mana'] += 30
-    @stats['fatigue'] += 10
-    @stats['health'] -= 5
-    @stats['money'] -= 20
+    @stats['fun'] = take_op 'fun', '-', 1
+    @stats['mana'] = take_op 'mana', '+', 30
+    @stats['fatigue'] = take_op 'fatigue', '+', 10
+    @stats['health'] = take_op 'health', '-', 5
+    @stats['money'] = take_op 'money', '-', 20
 
     @stats
   end
 
-  def dead?
-    (@stats['fun'] <= -10) || (@stats['health']).negative?
-  end
+  # def dead?
+  #   (@stats['fun'] <= -10) || (@stats['health']).negative?
+  # end
 
   def self.there_is_possibility?(current_stats)
     current_stats['state?']['3'] = current_stats['money'] >= 20

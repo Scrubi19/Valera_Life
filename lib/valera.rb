@@ -12,7 +12,8 @@ class Valera
       '4' => true,
       '5' => true,
       '6' => true,
-      '7' => true
+      '7' => true,
+      'dead' => false
     }
   end
 
