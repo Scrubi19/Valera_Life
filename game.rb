@@ -1,6 +1,6 @@
 require_relative 'lib/valera'
-require_relative 'lib/saves_system/to_json'
-require_relative 'lib/saves_system/from_json'
+require_relative 'lib/save_management/save_json'
+require_relative 'lib/save_management/load_json'
 require_relative 'lib/game_process/menu'
 
 class Game
@@ -10,20 +10,19 @@ class Game
     @valera = Valera.new
   end
 
-  def game
-    system('reset') # wor with terminal only
-    Menu.print_stats(@valera.stats!)
+  def create_session
+    system('reset')
 
     until @valera.stats!['state?']['dead']
+      Menu.print_stats(@valera.stats!)
+
       Menu.print_menu(@valera.stats!)
 
-      choice = Menu.input_choice
-      break if choice.to_i == 10
+      choice = Menu.select_in_range(10)
 
       @valera = next_iteration(@valera, choice)
 
       system('reset')
-      Menu.print_stats(@valera.stats!)
     end
 
     puts 'You can never become a valera!'
@@ -31,4 +30,4 @@ class Game
 end
 
 game = Game.new
-game.game
+game.create_session

@@ -24,12 +24,14 @@ class Menu
     puts '---------------'
   end
 
-  def self.input_choice
+  def self.select_in_range(range)
     choice = ''
     loop do
       print "\nChoose an action: "
       choice = $stdin.gets.to_i
-      break if choice >= 1 && choice <= 10
+      break if choice >= 1 && choice < range
+
+      exit if choice == range
     end
     choice.to_s
   end

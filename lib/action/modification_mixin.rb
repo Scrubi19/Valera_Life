@@ -1,4 +1,4 @@
-require_relative '../saves_system/to_json'
+require_relative '../save_management/save_json'
 require_relative '../valera'
 require_relative '../action/sleep'
 require_relative '../action/chill'
@@ -7,7 +7,7 @@ require_relative '../action/work'
 require_relative '../action/singing_subway'
 require_relative '../action/go_bar'
 require_relative '../action/marginal_drink'
-require_relative '../saves_system/from_json'
+require_relative '../save_management/load_json'
 
 module ModificationMixin
   attr_accessor :act
@@ -33,6 +33,22 @@ module ModificationMixin
     },
     '7' => lambda { |valera, choice|
       valera.stats!['state?'][choice] ? Sleep.new(valera) : valera
+    },
+    '8' => lambda { |valera, _choice|
+      save = SaveJSON.new(valera)
+      puts 'Enter filename:'
+      save.create_save(gets.chomp.to_s)
+      valera
+    },
+    '9' => lambda { |valera, _choice|
+      files = Dir['saves/**/*.json']
+      files.each_with_index do |item, index|
+        puts "#{index + 1}) #{item.sub!('saves/', '')}"
+      end
+      puts 'Enter filename'
+      load = LoadJSON.new(gets.chomp.to_s)
+      load.load_file(valera)
+      valera
     }
   }
 

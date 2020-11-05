@@ -3,6 +3,7 @@ require_relative 'operations'
 
 module ChangeStatsMixin
   private
+
   include Conditions
   include Operations
 
@@ -20,6 +21,7 @@ module ChangeStatsMixin
     return mana res if stat == 'mana'
     return fun res if stat == 'fun'
     return fatigue res if stat == 'fatigue'
+
     health res if stat == 'health'
   end
 end
