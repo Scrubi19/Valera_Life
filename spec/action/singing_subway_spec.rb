@@ -8,7 +8,12 @@ RSpec.describe SingingSubway do
       SingingSubway.new Valera.new
     end
 
-    let(:singing_reset_expect) { { 'health' => 100, 'mana' => 10, 'fun' => 1, 'fatigue' => 20, 'money' => 10 } }
+    let(:singing_reset_expect) do
+      { 'fatigue' => 20, 'fun' => 10, 'health' => 100, 'mana' => 10, 'money' => 20,
+        'state?' => {
+          '1' => true, '2' => true, '3' => true, '4' => true, '5' => true, '6' => true, '7' => true, 'dead' => false
+        } }
+    end
 
     context 'Decorator singing subway reset' do
       it {

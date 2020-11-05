@@ -1,27 +1,80 @@
 require_relative 'conditions'
-require_relative 'operations'
 
 module ChangeStatsMixin
-  private
-
   include Conditions
-  include Operations
+
+  class << self
+    attr_reader :stats, :op
+  end
+
+  @stats = {
+    'money' => ->(res) { money res },
+    'mana' => ->(res) { mana res },
+    'fun' => ->(res) { fun res },
+    'fatigue' => ->(res) { fatigue res },
+    'health' => ->(res) { health res }
+  }
+
+  @op = {
+    '+' => ->(stat, number) { stat + number },
+    '-' => ->(stat, number) { stat - number }
+  }
 
   def take_op(stat, operation, number)
-    res = {
-      '+' => @stats[stat] + number,
-      '-' => @stats[stat] - number
-    }[operation]
+    res = ChangeStatsMixin.op[operation].call @stats[stat], number
 
     res += 50 if singing_normal_drunk?
     res += number if sleeping_not_drunk?
     res -= number if sleeping_drunk?
 
-    return money res if stat == 'money'
-    return mana res if stat == 'mana'
-    return fun res if stat == 'fun'
-    return fatigue res if stat == 'fatigue'
+    ChangeStatsMixin.stats[stat].call res
+  end
 
-    health res if stat == 'health'
+  def self.money(res)
+    res <= 0 ? 0 : res
+  end
+
+  def self.fun(res)
+    if res >= 10
+      10
+    elsif res <= -10
+      @stats['state?']['dead'] = true
+      res
+    else
+      res
+    end
+  end
+
+  def self.fatigue(res)
+    if res >= 100
+      @stats['state?']['dead'] = true
+      100
+    elsif res <= 0
+      0
+    else
+      res
+    end
+  end
+
+  def self.health(res)
+    if res >= 100
+      100
+    elsif res <= 0
+      @stats['state?']['dead'] = true
+      res
+    else
+      res
+    end
+  end
+
+  def self.mana(res)
+    if res >= 100
+      @stats['state?']['dead'] = true
+      res
+    elsif res <= 0
+      0
+    else
+      res
+    end
   end
 end

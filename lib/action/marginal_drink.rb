@@ -1,4 +1,7 @@
+require_relative 'action_mixins/change_stats_mixin'
+
 class MarginalDrink
+  include ChangeStatsMixin
   attr_accessor :base_object
 
   def initialize(base_object)

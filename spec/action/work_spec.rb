@@ -8,7 +8,12 @@ RSpec.describe Work do
       Chill.new Work.new Valera.new
     end
 
-    let(:work_reset_expect) { { 'health' => 100, 'mana' => 0, 'fun' => -5, 'fatigue' => 10, 'money' => 0 } }
+    let(:work_reset_expect) do
+      { 'fatigue' => 10, 'fun' => 10, 'health' => 100, 'mana' => 0, 'money' => 10,
+        'state?' => {
+          '1' => true, '2' => true, '3' => true, '4' => true, '5' => true, '6' => true, '7' => true, 'dead' => false
+        } }
+    end
 
     context 'Decorator work reset' do
       it {

@@ -8,7 +8,12 @@ RSpec.describe GoBar do
       WineSerial.new GoBar.new Valera.new
     end
 
-    let(:bar_reset_expect) { { 'fatigue' => 10, 'fun' => -1, 'health' => 95, 'mana' => 30, 'money' => -20 } }
+    let(:bar_reset_expect) do
+      { 'fatigue' => 10, 'fun' => 9, 'health' => 95, 'mana' => 30, 'money' => 0,
+        'state?' => {
+          '1' => true, '2' => true, '3' => true, '4' => true, '5' => true, '6' => true, '7' => true, 'dead' => false
+        } }
+    end
 
     context 'Decorator bar reset' do
       it {
