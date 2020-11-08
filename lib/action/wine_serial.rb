@@ -2,7 +2,7 @@ require_relative 'action_mixins/change_stats_mixin'
 
 class WineSerial
   include ChangeStatsMixin
-  attr_accessor :base_object
+  attr_accessor :base_object, :stats
 
   def initialize(base_object)
     @base_object = base_object
@@ -19,10 +19,6 @@ class WineSerial
 
     @stats
   end
-
-  # def dead?
-  #   (@stats['fun'] <= -10) || (@stats['health']).negative?
-  # end
 
   def self.there_is_possibility?(current_stats)
     current_stats['state?']['3'] = current_stats['money'] >= 20

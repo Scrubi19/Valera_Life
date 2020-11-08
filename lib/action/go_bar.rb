@@ -2,7 +2,7 @@ require_relative 'action_mixins/change_stats_mixin'
 
 class GoBar
   include ChangeStatsMixin
-  attr_accessor :base_object
+  attr_accessor :base_object, :stats
 
   def initialize(base_object)
     @base_object = base_object
@@ -19,10 +19,6 @@ class GoBar
 
     @stats
   end
-
-  # def dead?
-  #   (@stats['fun'] <= -10) || (@stats['health']).negative?
-  # end
 
   def self.there_is_possibility?(current_stats)
     current_stats['state?']['4'] = current_stats['money'] >= 100

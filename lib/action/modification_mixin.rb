@@ -36,14 +36,15 @@ module ModificationMixin
     },
     '8' => lambda { |valera, _choice|
       save = SaveJSON.new(valera)
-      puts 'Enter filename:'
+      puts 'Enter username:'
       save.create_save(gets.chomp.to_s)
       valera
     },
     '9' => lambda { |valera, _choice|
       files = Dir['saves/**/*.json']
       files.each_with_index do |item, index|
-        puts "#{index + 1}) #{item.sub!('saves/', '')}"
+        item = item.sub!('saves/', '')
+        puts "#{index + 1}) #{item.sub!('.json', '')}"
       end
       puts 'Enter filename'
       load = LoadJSON.new(gets.chomp.to_s)

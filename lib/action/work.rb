@@ -2,7 +2,7 @@ require_relative 'action_mixins/change_stats_mixin'
 
 class Work
   include ChangeStatsMixin
-  attr_accessor :base_object
+  attr_accessor :base_object, :stats
 
   def initialize(base_object)
     @base_object = base_object
@@ -19,18 +19,10 @@ class Work
     @stats
   end
 
-  # def dead?
-  #   (@stats['fun'] <= -10) || (@stats['health']).negative?
-  # end
-
   def self.there_is_possibility?(current_stats)
     current_stats['state?']['1'] =
       current_stats['mana'] < 50 && current_stats['fatigue'] < 10
   end
-
-  # def might?
-  #   dead? && drunk?
-  # end
 
   def self.print_info(numb, stats)
     print "#{numb}: Go to work"
