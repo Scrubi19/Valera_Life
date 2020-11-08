@@ -30,7 +30,7 @@ module ChangeStatsMixin
     ChangeStatsMixin.new_stat[stat].call @stats, res
   end
 
-  def self.money(stat_obj, res)
+  def self.money(_stat_obj, res)
     res <= 0 ? 0 : res
   end
 
