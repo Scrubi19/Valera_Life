@@ -4,8 +4,6 @@ require_relative 'lib/save_management/load_json'
 require_relative 'lib/game_process/menu'
 
 class Game
-  include ModificationMixin
-
   def initialize
     @valera = Valera.new
   end
@@ -20,7 +18,7 @@ class Game
 
       choice = Menu.select_in_range(10)
 
-      @valera = next_iteration(@valera, choice)
+      @valera = Modification.next_iteration(@valera, choice)
 
       system('reset')
     end

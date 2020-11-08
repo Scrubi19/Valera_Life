@@ -9,7 +9,7 @@ require_relative '../action/go_bar'
 require_relative '../action/marginal_drink'
 require_relative '../save_management/load_json'
 
-module ModificationMixin
+class Modification
   attr_accessor :act
 
   @act = {
@@ -53,11 +53,7 @@ module ModificationMixin
     }
   }
 
-  def next_iteration(valera, choice)
-    ModificationMixin.act[choice].call(valera, choice)
-  end
-
-  class << self
-    attr_reader :act
+  def self.next_iteration(valera, choice)
+    @act[choice].call(valera, choice)
   end
 end

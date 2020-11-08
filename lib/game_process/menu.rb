@@ -1,4 +1,4 @@
-require_relative '../action/modification_mixin'
+require_relative '../action/modification'
 
 class Menu
   def self.print_menu(stats)

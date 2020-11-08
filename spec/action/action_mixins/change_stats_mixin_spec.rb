@@ -1,9 +1,7 @@
 require 'rspec'
-require_relative '../../lib/valera'
-require_relative '../../lib/action/chill'
-require_relative '../../lib/action/modification'
+require_relative '../../../lib/action/action_mixins/change_stats_mixin'
 
-RSpec.describe Chill do
+RSpec.describe ChangeStatsMixin do
   describe 'decorator' do
     let(:work_chill_valera) do
       Work.new Chill.new Valera.new
