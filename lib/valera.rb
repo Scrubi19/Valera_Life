@@ -1,13 +1,23 @@
+require 'yaml'
+
 class Valera
   attr_accessor :stats
 
-  def initialize(health = 100, mana = 0, fun = 0, money = 0, fatigue = 0)
-    @stats = {
-      'health' => health,
-      'mana' => mana,
-      'fun' => fun,
-      'fatigue' => fatigue,
-      'money' => money
+  def initialize(level = 'easy', path_to_config = 'lib/start_config.yml')
+    @stats = YAML.safe_load(File.read(path_to_config))[level]
+    @stats['state?'] = {
+      '1' => true,
+      '2' => true,
+      '3' => true,
+      '4' => true,
+      '5' => true,
+      '6' => true,
+      '7' => true,
+      'dead' => false
     }
+  end
+
+  def stats!
+    @stats
   end
 end

@@ -1,22 +1,31 @@
-require_relative 'lib/saves_system/to_json'
 require_relative 'lib/valera'
-require_relative 'lib/saves_system/from_json'
+require_relative 'lib/save_management/save_json'
+require_relative 'lib/save_management/load_json'
+require_relative 'lib/game_process/menu'
 
 class Game
   def initialize
     @valera = Valera.new
   end
 
-  def start
-    ToJSON.new(@valera).init_stats.create_save
-    FromJSON.new('save.json').load_file.init_stats(@valera)
-  end
+  def create_session
+    system('reset')
 
-  def stop
-    ToJSON.new(@valera).init_stats.create_save
+    until @valera.stats!['state?']['dead']
+      Menu.print_stats(@valera.stats!)
+
+      Menu.print_menu(@valera.stats!)
+
+      choice = Menu.select_in_range(10)
+
+      @valera = Modification.next_iteration(@valera, choice)
+
+      system('reset')
+    end
+
+    puts 'You can never become a valera!'
   end
 end
 
 game = Game.new
-game.start
-game.stop
+game.create_session
