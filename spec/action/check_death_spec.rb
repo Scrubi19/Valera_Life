@@ -30,4 +30,3 @@ RSpec.describe Conditions do
     end
   end
 end
-

@@ -20,16 +20,11 @@ class MarginalDrink
     @stats
   end
 
-  def self.there_is_possibility?(current_stats)
+  def self.perhaps?(current_stats)
     current_stats['state?']['6'] = current_stats['money'] >= 150
   end
 
   def self.print_info(numb, stats)
-    print "#{numb}: Drink with marginalized personalities"
-    if there_is_possibility?(stats)
-      puts ' (Can) '
-    else
-      puts ' (No possibility) '
-    end
+    puts "#{numb}: Drink with marginal" + (perhaps?(stats) ? '' : ' (can\'t)')
   end
 end

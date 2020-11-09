@@ -20,16 +20,11 @@ class GoBar
     @stats
   end
 
-  def self.there_is_possibility?(current_stats)
+  def self.perhaps?(current_stats)
     current_stats['state?']['4'] = current_stats['money'] >= 100
   end
 
   def self.print_info(numb, stats)
-    print "#{numb}: Go to a bar"
-    if there_is_possibility?(stats)
-      puts ' (Can) '
-    else
-      puts ' (No possibility) '
-    end
+    puts "#{numb}: Go to a bar" + (perhaps?(stats) ? '' : ' (can\'t)')
   end
 end

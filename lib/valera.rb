@@ -17,10 +17,6 @@ class Valera
     }
   end
 
-  def dead?
-    (@stats['fun'] <= -10) || (@stats['health']).negative?
-  end
-
   def stats!
     @stats
   end

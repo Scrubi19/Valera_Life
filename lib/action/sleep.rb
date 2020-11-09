@@ -19,16 +19,11 @@ class Sleep
     @stats
   end
 
-  def self.there_is_possibility?(current_stats)
+  def self.perhaps?(current_stats)
     current_stats['state?']['7'] = true
   end
 
   def self.print_info(numb, stats)
-    print "#{numb}: Sleep"
-    if there_is_possibility?(stats)
-      puts ' (Can) '
-    else
-      puts ' (No possibility) '
-    end
+    puts "#{numb}: Sleep" + (perhaps?(stats) ? '' : ' (can\'t)')
   end
 end

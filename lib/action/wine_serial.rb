@@ -20,16 +20,11 @@ class WineSerial
     @stats
   end
 
-  def self.there_is_possibility?(current_stats)
+  def self.perhaps?(current_stats)
     current_stats['state?']['3'] = current_stats['money'] >= 20
   end
 
   def self.print_info(numb, stats)
-    print "#{numb}: Drink wine and watch TV series"
-    if there_is_possibility?(stats)
-      puts ' (Can) '
-    else
-      puts ' (No possibility) '
-    end
+    puts "#{numb}: Drink wine, watch TV" + (perhaps?(stats) ? '' : ' (can\'t)')
   end
 end

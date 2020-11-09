@@ -19,16 +19,11 @@ class SingingSubway
     @stats
   end
 
-  def self.there_is_possibility?(current_stats)
+  def self.perhaps?(current_stats)
     current_stats['state?']['5'] = true
   end
 
   def self.print_info(numb, stats)
-    print "#{numb}: Sing in the subway"
-    if there_is_possibility?(stats)
-      puts ' (Can) '
-    else
-      puts ' (No possibility) '
-    end
+    puts "#{numb}: Sing in the subway" + (perhaps?(stats) ? '' : ' (can\'t)')
   end
 end
