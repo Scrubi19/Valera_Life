@@ -11,9 +11,9 @@ class GoBar
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['fun'] = take_op 'fun', '-', 1
-    @stats['mana'] = take_op 'mana', '-', 60
-    @stats['fatigue'] = take_op 'fatigue', '-', 40
+    @stats['fun'] = take_op 'fun', '+', 1
+    @stats['mana'] = take_op 'mana', '+', 60
+    @stats['fatigue'] = take_op 'fatigue', '+', 40
     @stats['health'] = take_op 'health', '-', 10
     @stats['money'] = take_op 'money', '-', 100
 

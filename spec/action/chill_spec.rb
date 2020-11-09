@@ -5,12 +5,12 @@ require_relative '../../lib/action/modification'
 
 RSpec.describe Chill do
   describe 'decorator' do
-    let(:work_chill_valera) do
-      Work.new Chill.new Valera.new
+    let(:actual) do
+      Modification.next_iteration(Valera.new, '2').stats!
     end
 
-    let(:chill_reset_expect) do
-      { 'fatigue' => 70, 'fun' => 5, 'health' => 100, 'mana' => 0, 'money' => 110,
+    let(:expected) do
+      { 'fatigue' => 10, 'fun' => 10, 'health' => 100, 'mana' => 0, 'money' => 10,
         'state?' => {
           '1' => true, '2' => true, '3' => true, '4' => true, '5' => true, '6' => true, '7' => true, 'dead' => false
         } }
@@ -18,8 +18,7 @@ RSpec.describe Chill do
 
     context 'Decorator chill reset' do
       it {
-        work_chill_valera.base_object = Valera.new
-        expect(work_chill_valera.stats!).to eq chill_reset_expect
+        expect(actual).to eq expected
       }
     end
   end

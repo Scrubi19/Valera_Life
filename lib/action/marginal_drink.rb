@@ -13,7 +13,7 @@ class MarginalDrink
 
     @stats['fun'] = take_op 'fun', '+', 5
     @stats['health'] = take_op 'health', '-', 80
-    @stats['mana'] = take_op 'mana', '+', 90
+    @stats['mana'] = take_op 'mana', '+', 80
     @stats['fatigue'] = take_op 'fatigue', '+', 80
     @stats['money'] = take_op 'money', '-', 150
 
