@@ -10,8 +10,14 @@ class Menu
     MarginalDrink.print_info(6, stats)
     Sleep.print_info(7, stats)
     puts '8: Save the game'
-    puts '9: Load the game'
-    puts '10: Exit'
+    puts '9: Exit'
+  end
+
+  def self.print_main_menu
+    puts '---------------'
+    puts '1. New game'
+    puts '2. Load the game'
+    puts '3. Exit'
   end
 
   def self.print_stats(stats)

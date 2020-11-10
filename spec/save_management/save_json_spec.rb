@@ -15,8 +15,8 @@ RSpec.describe SaveJSON do
     context 'check stats before saving and after saving' do
       it {
         save = SaveJSON.new(before_save)
-        save.create_save('test')
-        load = LoadJSON.new('test')
+        save.create_save('test/test')
+        load = LoadJSON.new('test/test')
         load.load_file(after_save)
         expect(before_save.stats!).to eq after_save.stats!
       }
