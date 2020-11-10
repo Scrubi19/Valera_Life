@@ -4,6 +4,11 @@ require_relative '../../lib/save_management/load_json'
 
 RSpec.describe LoadJSON do
   describe 'load stats from JSON' do
+    # let(:filename) do
+    #   allow($stdin).to receive(:gets).and_return('test/test')
+    #   $stdin.gets
+    # end
+
     let(:load_stats) do
       Valera.new
     end

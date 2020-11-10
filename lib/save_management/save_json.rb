@@ -11,4 +11,9 @@ class SaveJSON
       f.write(@valera_stats.to_json)
     end
   end
+
+  def self.enter_filename
+    puts 'Enter username:'
+    gets.chomp.to_s
+  end
 end

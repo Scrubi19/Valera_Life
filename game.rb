@@ -13,13 +13,11 @@ class Game
 
     until @valera.stats!['state?']['dead']
       Menu.print_stats(@valera.stats!)
-
       Menu.print_menu(@valera.stats!)
 
       choice = Menu.select_in_range(10)
 
       @valera = Modification.next_iteration(@valera, choice)
-
       system('reset')
     end
 
