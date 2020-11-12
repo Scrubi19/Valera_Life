@@ -2,8 +2,7 @@ require 'json'
 
 class SaveJSON
   def initialize(obj)
-    @valera = obj
-    @valera_stats = @valera.stats!
+    @valera_stats = obj.stats!
   end
 
   def create_save(path)
@@ -13,7 +12,6 @@ class SaveJSON
   end
 
   def self.enter_filename
-    puts 'Enter username:'
     gets.chomp.to_s
   end
 end
