@@ -11,9 +11,16 @@ class LoadJSON
   end
 
   def self.enter_filename
+    files = []
     Dir['saves/**/*.json'].each_with_index do |item, index|
+      files[index] = item
       puts "#{index + 1}) #{item.sub!('.json', '').sub!('saves/', '')}"
     end
-    gets.chomp.to_s
+    filename = gets.chomp.to_s
+    unless files.include?(filename)
+      puts 'error-1: file does not exist'
+      exit
+    end
+    filename
   end
 end

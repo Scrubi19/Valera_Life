@@ -35,13 +35,11 @@ class Modification
       valera.stats!['state?'][choice] ? Sleep.new(valera) : valera
     },
     '8' => lambda { |valera, _choice, filename|
-      save = SaveJSON.new(valera)
-      save.create_save(filename)
+      SaveJSON.new(valera).create_save(filename)
       valera
     },
     '9' => lambda { |valera, _choice, filename|
-      load = LoadJSON.new(filename)
-      load.load_file(valera)
+      LoadJSON.new(filename).load_file(valera)
       valera
     }
   }
@@ -51,7 +49,6 @@ class Modification
       filename = SaveJSON.enter_filename if choice == '8'
       filename = LoadJSON.enter_filename if choice == '9'
     end
-
     @act[choice].call(valera, choice, filename)
   end
 end
