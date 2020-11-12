@@ -6,15 +6,20 @@ class Sleep
 
   def initialize(base_object)
     @base_object = base_object
+    stats_config = YAML.safe_load(File.read('lib/action_config.yml'))['sleep']
+    @fun = stats_config['fun']
+    @mana = stats_config['mana']
+    @fatigue = stats_config['fatigue']
+    @health = stats_config['health']
   end
 
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['health'] = take_op 'health', '+', 90
-    @stats['fun'] = take_op 'fun', '-', 3
-    @stats['mana'] = take_op 'mana', '-', 50
-    @stats['fatigue'] = take_op 'fatigue', '-', 70
+    @stats['health'] = take_op 'health', '+', @health
+    @stats['fun'] = take_op 'fun', '-', @fun
+    @stats['mana'] = take_op 'mana', '-', @mana
+    @stats['fatigue'] = take_op 'fatigue', '-', @fatigue
 
     @stats
   end

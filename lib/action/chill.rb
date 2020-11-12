@@ -1,4 +1,5 @@
 require_relative 'action_mixins/change_stats_mixin'
+require 'yaml'
 
 class Chill
   include ChangeStatsMixin
@@ -6,14 +7,18 @@ class Chill
 
   def initialize(base_object)
     @base_object = base_object
+    stats_config = YAML.safe_load(File.read('lib/action_config.yml'))['chill']
+    @fun = stats_config['fun']
+    @mana = stats_config['mana']
+    @fatigue = stats_config['fatigue']
   end
 
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['fun'] = take_op 'fun', '+', 1
-    @stats['mana'] = take_op 'mana', '-', 10
-    @stats['fatigue'] = take_op 'fatigue', '+', 10
+    @stats['fun'] = take_op 'fun', '+', @fun
+    @stats['mana'] = take_op 'mana', '-', @mana
+    @stats['fatigue'] = take_op 'fatigue', '+', @fatigue
 
     @stats
   end

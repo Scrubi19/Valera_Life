@@ -1,4 +1,5 @@
 require_relative 'action_mixins/change_stats_mixin'
+require 'yaml'
 
 class MarginalDrink
   include ChangeStatsMixin
@@ -6,6 +7,12 @@ class MarginalDrink
 
   def initialize(base_object)
     @base_object = base_object
+    stats_config = YAML.safe_load(File.read('lib/action_config.yml'))['marginal_drink']
+    @fun = stats_config['fun']
+    @mana = stats_config['mana']
+    @fatigue = stats_config['fatigue']
+    @health = stats_config['health']
+    @money = stats_config['money']
   end
 
   def stats!

@@ -1,4 +1,5 @@
 require_relative 'action_mixins/change_stats_mixin'
+require 'yaml'
 
 class SingingSubway
   include ChangeStatsMixin
@@ -6,15 +7,20 @@ class SingingSubway
 
   def initialize(base_object)
     @base_object = base_object
+    stats_config = YAML.safe_load(File.read('lib/action_config.yml'))['singing_subway']
+    @fun = stats_config['fun']
+    @mana = stats_config['mana']
+    @fatigue = stats_config['fatigue']
+    @money = stats_config['money']
   end
 
   def stats!
     @stats = @base_object.stats!.clone
 
-    @stats['fun'] = take_op 'fun', '+', 1
-    @stats['money'] = take_op 'money', '+', 10
-    @stats['mana'] = take_op 'mana', '+', 10
-    @stats['fatigue'] = take_op 'fatigue', '+', 20
+    @stats['fun'] = take_op 'fun', '+', @fun
+    @stats['money'] = take_op 'money', '+', @money
+    @stats['mana'] = take_op 'mana', '+', @mana
+    @stats['fatigue'] = take_op 'fatigue', '+', @fatigue
 
     @stats
   end
