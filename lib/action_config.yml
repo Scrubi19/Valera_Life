@@ -1,0 +1,43 @@
+work:
+  fun: 5
+  mana: 30
+  money: 100
+  fatigue: 70
+
+chill:
+  mana: 10
+  fun: 1
+  fatigue: 10
+
+go_bar:
+  fun: 1
+  mana: 60
+  fatigue: 40
+  health: 10
+  money: 100
+
+marginal_drink:
+  fun: 5
+  mana: 80
+  fatigue: 80
+  health: 80
+  money: 150
+
+singing_subway:
+  fun: 1
+  mana: 10
+  fatigue: 20
+  money: 10
+
+sleep:
+  fun: 3
+  mana: 50
+  fatigue: 70
+  health: 90
+
+wine_serial:
+  fun: 1
+  mana: 30
+  fatigue: 10
+  health: 5
+  money: 20
